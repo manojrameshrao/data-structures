@@ -81,12 +81,19 @@ void insert_at_pos(Node** head, int ele_to_insert, int pos){
 
 void delete_at_pos(Node** head, int pos){
 	struct Node* prev = *head;
-	for(int i=0;i<pos-2;i++){
-		prev=prev->next;
+
+	if(pos==1){
+		*head = prev->next;
+		delete prev;
+	}else{
+		for(int i=0;i<pos-2;i++){
+			prev=prev->next;
+		}
+
+		Node* temp = prev->next;
+		prev->next=temp->next;
+		delete temp;
 	}
-	Node* temp = prev->next;
-	prev->next=temp->next;
-	delete temp;
 }
 
 void reverse(Node** head){
