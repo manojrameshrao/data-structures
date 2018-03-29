@@ -21,6 +21,9 @@ void print(Node** head);
 void insert_at_pos(Node** head, int ele_to_insert, int pos);
 void reverse(Node** head);
 void delete_at_pos(Node** head, int pos);
+void delete_node(Node** head, int element);
+void printRecur(struct Node* p);
+void printReverserRecur(struct Node* p);
 
 int main() {
 	Node* head = NULL;
@@ -36,11 +39,14 @@ int main() {
 
 		//cout<<endl;
 	}
-	print(&head);
-	cout<<"Enter position to delete"<<endl;
-	cin>>n;
-	delete_at_pos(&head,n);
-	print(&head);
+	//print(&head);
+	printRecur(head);
+	cout<<"Reversed List"<<endl;
+	//cin>>n;
+	//reverse(&head);
+	printReverserRecur(head);
+	//delete_at_pos(&head,n);
+	//print(&head);
 	return 0;
 }
 
@@ -97,7 +103,53 @@ void delete_at_pos(Node** head, int pos){
 }
 
 void reverse(Node** head){
+	Node *prev,*curr,*nextNode;
+	curr = *head;
+	prev=NULL;
+	while(curr!=NULL){
+		nextNode = curr->next;
+		curr->next=prev;
+		prev = curr;
+		curr = nextNode;
+
+
+	}
+	*head = prev;
 
 }
 
+void delete_node(Node** head, int element){
+	Node* temp = *head;
+	while(temp->next!=NULL){
+		temp=temp->next;
+		if(temp->data==element){
 
+		}
+	}
+}
+
+void printRecur(struct Node* p){
+	if(p==NULL){
+		cout<<endl;
+		return;
+	}
+	cout<<p->data<<"->";
+	printRecur(p->next);
+}
+
+void printReverserRecur(struct Node* p){
+	if(p==NULL){
+		cout<<endl;
+		return;
+	}
+	printReverserRecur(p->next);
+	cout<<p->data<<"->";
+}
+
+void reverseRecur(Node* p){
+	if(p==NULL){
+		cout<<endl;
+		return;
+	}
+
+}
